@@ -1,5 +1,9 @@
 <?php
 
+namespace TechStore\Classes\Models;
+
+use TechStore\Classes\Db;
+
 class Cat extends Db
 {
 

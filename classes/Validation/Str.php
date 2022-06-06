@@ -1,5 +1,7 @@
 <?php
 
+namespace TechStore\Classes\Validation;
+
 class Str implements ValidationRule
 {
   public function check($name, $value)

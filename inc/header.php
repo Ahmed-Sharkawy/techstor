@@ -1,4 +1,12 @@
-<?php require_once("app.php"); ?>
+<?php
+require_once("app.php");
+
+use TechStore\Classes\Models\Cat;
+
+$categoryObject = new Cat();
+$categorys = $categoryObject->selectAll("id,name");
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,20 +18,20 @@
   <meta name="description" content="TechStore">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/bootstrap4/bootstrap.min.css">
-  <link href="<?php URL ?>assets/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/plugins/slick-1.8.0/slick.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/main_styles.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/responsive.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/shop_styles.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/shop_responsive.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/product_styles.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/product_responsive.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/cart_styles.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/cart_responsive.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/contact_styles.css">
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>assets/styles/contact_responsive.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/bootstrap4/bootstrap.min.css">
+  <link href="<?= URL ?>assets/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/plugins/slick-1.8.0/slick.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/main_styles.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/responsive.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/shop_styles.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/shop_responsive.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/product_styles.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/product_responsive.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/cart_styles.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/cart_responsive.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/contact_styles.css">
+  <link rel="stylesheet" type="text/css" href="<?= URL ?>assets/styles/contact_responsive.css">
 
 </head>
 
@@ -44,7 +52,7 @@
             <!-- Logo -->
             <div class="col-lg-2 col-sm-3 col-3 order-1">
               <div class="logo_container">
-                <div class="logo"><a href="#">Techstore</a></div>
+                <div class="logo"><a href="<?= URL . "index.php" ?>">Techstore</a></div>
               </div>
             </div>
 
@@ -53,8 +61,8 @@
               <div class="header_search">
                 <div class="header_search_content">
                   <div class="header_search_form_container">
-                    <form action="#" class="header_search_form clearfix">
-                      <input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+                    <form action="<?= URL ?>search.php" method="GET" class="header_search_form clearfix">
+                      <input type="search" required="required" name="keyword" class="header_search_input" placeholder="Search for products...">
                       <div class="custom_dropdown">
                         <div class="custom_dropdown_list">
                           <span class="custom_dropdown_placeholder clc">All Categories</span>
@@ -69,7 +77,7 @@
                           </ul>
                         </div>
                       </div>
-                      <button type="submit" class="header_search_button trans_300" value="Submit"><img src="<?php URL ?>assets/images/search.png" alt=""></button>
+                      <button type="submit" class="header_search_button trans_300" value="Submit"><img src="<?= URL ?>assets/images/search.png" alt=""></button>
                     </form>
                   </div>
                 </div>
@@ -83,7 +91,7 @@
                 <div class="cart">
                   <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                     <div class="cart_icon">
-                      <img src="<?php URL ?>assets/images/cart.png" alt="">
+                      <img src="<?= URL ?>assets/images/cart.png" alt="">
                       <div class="cart_count"><span>10</span></div>
                     </div>
                     <div class="cart_content">
@@ -116,14 +124,9 @@
                   </div>
 
                   <ul class="cat_menu">
-                    <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                    <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                    <?php foreach ($categorys as $category) : ?>
+                      <li><a href="category.php?id=<?= $category['id'] ?>"> <?= $category['name']; ?> <i class="fas fa-chevron-right ml-auto"></i></a></li>
+                    <?php endforeach; ?>
                   </ul>
                 </div>
 
@@ -131,8 +134,8 @@
 
                 <div class="main_nav_menu ml-auto">
                   <ul class="standard_dropdown main_nav_dropdown">
-                    <li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
-                    <li><a href="#">All products<i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="products.php">All products<i class="fas fa-chevron-down"></i></a></li>
                     <li><a href="#">Cart<i class="fas fa-chevron-down"></i></a></li>
                   </ul>
                 </div>

@@ -1,5 +1,7 @@
 <?php
 
+namespace TechStore\Classes;
+
 abstract class Db
 {
   protected $coon;
@@ -7,10 +9,10 @@ abstract class Db
 
   public function connect()
   {
-    $this->coon = new mysqli(DB_SERVERNAME, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    $this->coon = new \mysqli(DB_SERVERNAME, DB_USERNAME, DB_PASSWORD, DB_NAME);
   }
 
-  public function selectAll(string $fields = "*") : array
+  public function selectAll(string $fields = "*"): array
   {
     $sql    = "SELECT $fields FROM `$this->table` ";
     $result = $this->coon->query($sql);
@@ -31,14 +33,14 @@ abstract class Db
     return $result->fetch_all(1);
   }
 
-  public function getCount() : int
+  public function getCount(): int
   {
     $sql    = "SELECT COUNT(*) AS cnt FROM `$this->table` ";
     $result = $this->coon->query($sql);
     return $result->fetch_assoc()["cnt"];
   }
 
-  public function insert(string $fields, string $value) : bool
+  public function insert(string $fields, string $value): bool
   {
     $sql = "INSERT INTO `$this->table` ($fields) VALUES ($value) ";
     return $this->coon->query($sql);

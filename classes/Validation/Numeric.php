@@ -1,5 +1,7 @@
 <?php
 
+namespace TechStore\Classes\Validation;
+
 class Numeric implements ValidationRule
 {
   public function check($name, $value)

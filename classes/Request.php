@@ -1,10 +1,12 @@
 <?php
 
+namespace TechStore\Classes;
+
 class Request
 {
   public function get(string $key)
   {
-    return $_GET["$key"];
+    return $_GET[$key];
   }
 
   public function post(string $key)

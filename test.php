@@ -1,16 +1,23 @@
 <?php
 
-require_once( "classes/Request.php");
-require_once("classes/Session.php");
-require_once("classes/Db.php");
-require_once("classes/Models/Product.php");
-require_once("classes/Models/Order.php");
-require_once("classes/Validation/ValidationRule.php");
-require_once("classes/Validation/Required.php");
-require_once("classes/Validation/Numeric.php");
-require_once("classes/Validation/Email.php");
-require_once("classes/Validation/Max.php");
-require_once("classes/Validation/Validator.php");
+use TechStore\Classes\Validation\Validator;
+
+require_once( "app.php");
+
+// use TechStore\Classes\Validation\Validator;
+
+
+// require_once( "classes/Request.php");
+// require_once("classes/Session.php");
+// require_once("classes/Db.php");
+// require_once("classes/Models/Product.php");
+// require_once("classes/Models/Order.php");
+// require_once("classes/Validation/ValidationRule.php");
+// require_once("classes/Validation/Required.php");
+// require_once("classes/Validation/Numeric.php");
+// require_once("classes/Validation/Email.php");
+// require_once("classes/Validation/Max.php");
+// require_once("classes/Validation/Validator.php");
 
 
 
@@ -33,8 +40,10 @@ require_once("classes/Validation/Validator.php");
 // print_r($res);
 
 
-$validator = new Validator();
-$validator->validate("age", 22 ,["max", "required", "numeric"]);
-echo '<pre>';
-print_r($validator->getErrors());
-echo '</pre>';
+// $validator = new Validator;
+// $validator->validate("age", 22 ,["required", "numeric"]);
+// echo '<pre>';
+// print_r($validator->getErrors());
+// echo '</pre>';
+
+echo $request->get("n");

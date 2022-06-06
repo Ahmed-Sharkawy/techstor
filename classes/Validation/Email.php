@@ -1,5 +1,7 @@
 <?php
 
+namespace TechStore\Classes\Validation;
+
 class Email implements ValidationRule
 {
   public function check($name, $value)

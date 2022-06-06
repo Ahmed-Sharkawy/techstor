@@ -1,5 +1,7 @@
 <?php
 
+namespace TechStore\Classes\Validation;
+
 class Validator
 {
   private $errors = [];
