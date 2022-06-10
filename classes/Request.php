@@ -28,4 +28,9 @@ class Request
   {
     return trim(htmlspecialchars($_POST["$key"]));
   }
+
+  public function redirect($redirect)
+  {
+    header("location:". URL .$redirect);
+  }
 }

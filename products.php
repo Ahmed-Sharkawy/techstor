@@ -61,7 +61,7 @@ $products = $productObject->selectAll("id,name,img,price");
 										<div><a href="product.php?id=<?= $product['id'] ?>" tabindex="0"><?= $product['name'] ?></a></div>
 									</div>
 								</div>
-								<div class="product_fav"><i class="fas fa-cart-plus"></i></div>
+								
 							</div>
 						<?php endforeach; ?>
 					</div>

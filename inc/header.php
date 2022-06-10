@@ -1,10 +1,16 @@
 <?php
+ob_start();
 require_once("app.php");
 
+use TechStore\Classes\Cart;
 use TechStore\Classes\Models\Cat;
 
 $categoryObject = new Cat();
+$cartObject = new Cart();
+
 $categorys = $categoryObject->selectAll("id,name");
+
+
 
 ?>
 
@@ -92,11 +98,11 @@ $categorys = $categoryObject->selectAll("id,name");
                   <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                     <div class="cart_icon">
                       <img src="<?= URL ?>assets/images/cart.png" alt="">
-                      <div class="cart_count"><span>10</span></div>
+                      <div class="cart_count"><span><?= $cartObject->count() ?></span></div>
                     </div>
                     <div class="cart_content">
-                      <div class="cart_text"><a href="#">Cart</a></div>
-                      <div class="cart_price">$85</div>
+                      <div class="cart_text"><a href="<?= URL . "cart.php" ?>">Cart</a></div>
+                      <div class="cart_price"><?= $cartObject->total() ?></div>
                     </div>
                   </div>
                 </div>
@@ -134,9 +140,9 @@ $categorys = $categoryObject->selectAll("id,name");
 
                 <div class="main_nav_menu ml-auto">
                   <ul class="standard_dropdown main_nav_dropdown">
-                    <li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
-                    <li><a href="products.php">All products<i class="fas fa-chevron-down"></i></a></li>
-                    <li><a href="#">Cart<i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="<?= URL . "index.php" ?>">Home<i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="<?= URL . "products.php" ?>">All products<i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="<?= URL . "cart.php" ?>">Cart<i class="fas fa-chevron-down"></i></a></li>
                   </ul>
                 </div>
 

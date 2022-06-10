@@ -2,6 +2,8 @@
 
 namespace TechStore\Classes;
 
+use mysqli;
+
 abstract class Db
 {
   protected $coon;
@@ -40,10 +42,17 @@ abstract class Db
     return $result->fetch_assoc()["cnt"];
   }
 
-  public function insert(string $fields, string $value): bool
+  public function insert(string $fields, string $value)
   {
-    $sql = "INSERT INTO `$this->table` ($fields) VALUES ($value) ";
+    $sql = "INSERT INTO $this->table ($fields) VALUES ($value)";
     return $this->coon->query($sql);
+  }
+
+  public function insertAndGetId(string $fields, string $value)
+  {
+    $sql = "INSERT INTO $this->table ($fields) VALUES ($value)";
+    $this->coon->query($sql);
+    return $this->coon->insert_id;
   }
 
   public function update(string $set, $id): bool

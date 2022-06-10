@@ -1,5 +1,7 @@
 <?php
 
+use TechStore\Classes\Models\Order;
+use TechStore\Classes\Models\OrdersDetails;
 use TechStore\Classes\Validation\Validator;
 
 require_once( "app.php");
@@ -46,4 +48,22 @@ require_once( "app.php");
 // print_r($validator->getErrors());
 // echo '</pre>';
 
-echo $request->get("n");
+// echo $request->get("n");
+
+// $orderObject = new Order();
+// $ordersDetailsObject = new OrdersDetails();
+
+// $orderId = $orderObject->insert("name, email, phone, address", "'name', 'email', 'phone', 'address'");
+
+// foreach ($cartObject->all() as $productId => $product) {
+//   $qty = $product['qty'];
+// $ordersDetailsObject->insert("orders_id, products_id, qty", "'1', '1', '1'");
+// }
+
+$data = [
+  'name'  => $name,
+  'email' =>  $email,
+  'phone' =>  $phone,
+  'address'  => $address,
+];
+
