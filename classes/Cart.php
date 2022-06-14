@@ -11,27 +11,41 @@ class Cart
 
   public function count()
   {
-    return count($_SESSION['cart']);
+    if (isset($_SESSION['cart'])) {
+      return count($_SESSION['cart']);
+    } else {
+      return 0;
+    }
   }
 
   public function total()
   {
     $total = 0;
-    foreach($_SESSION['cart'] as $prodData){
-      $total += $prodData['qty'] * $prodData['price'];
-    }
 
+    if (isset($_SESSION['cart'])) {
+      foreach ($_SESSION['cart'] as $prodData) {
+        $total += $prodData['qty'] * $prodData['price'];
+      }
+    }
     return $total;
   }
 
-  public function has($id) : bool
+  public function has($id): bool
   {
-    return array_key_exists($id, $_SESSION['cart']);
+    if (isset($_SESSION['cart'])) {
+      return array_key_exists($id, $_SESSION['cart']);
+    } {
+      return false;
+    }
   }
 
   public function all()
   {
-    return $_SESSION['cart'];
+    if (isset($_SESSION['cart'])) {
+      return $_SESSION['cart'];
+    } else {
+      return [];
+    }
   }
 
   public function remove($id)
@@ -43,5 +57,4 @@ class Cart
   {
     $_SESSION['cart'] = [];
   }
-
 }

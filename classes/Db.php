@@ -63,7 +63,7 @@ abstract class Db
 
   public function delete($id): bool
   {
-    $sql = "DELETE FROM $this->table WHERE `id` = $id";
+    $sql = "DELETE FROM $this->table WHERE `id` = '$id'";
     return $this->coon->query($sql);
   }
 }

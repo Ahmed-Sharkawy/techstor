@@ -4,7 +4,7 @@ namespace TechStore\Classes\Validation;
 
 class Validator
 {
-  private $errors = [];
+  public $errors = [];
 
   public function validate(string $name, $value, array $rules)
   {

@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 use TechStore\Classes\Cart;
 
 require_once "../app.php";
@@ -15,3 +15,5 @@ if ($request->getHas('id')) {
 } else {
   $request->redirect("index.php");
 }
+
+ob_end_flush();

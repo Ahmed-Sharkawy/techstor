@@ -14,9 +14,14 @@ class Request
     return $_POST["$key"];
   }
 
+  public function files(string $key)
+  {
+    return $_FILES["$key"];
+  }
+
   public function getHas(string $key) : bool
   {
-    return isset($_GET["$key"]);
+    return isset($_GET[$key]);
   }
 
   public function postHas(string $key) : bool
@@ -32,5 +37,10 @@ class Request
   public function redirect($redirect)
   {
     header("location:". URL .$redirect);
+  }
+
+  public function aredirect($redirect)
+  {
+    header("location:" . URL . "admin/" . $redirect);
   }
 }

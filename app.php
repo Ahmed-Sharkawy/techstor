@@ -5,7 +5,6 @@
 use TechStore\Classes\Request;
 use TechStore\Classes\Session;
 
-define("PATH", __DIR__ . '\\');
 define("URL", "http://localhost/techstor/");
 
 // db credentials
@@ -15,7 +14,7 @@ define("DB_PASSWORD", "");
 define("DB_NAME", "techstor");
 
 // include classes
-require_once(PATH . "vendor/autoload.php");
+require_once("vendor/autoload.php");
 
 // objects
 $request = new Request();

@@ -10,8 +10,6 @@ $cartObject = new Cart();
 
 $categorys = $categoryObject->selectAll("id,name");
 
-
-
 ?>
 
 <!DOCTYPE html>

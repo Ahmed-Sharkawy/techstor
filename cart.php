@@ -65,7 +65,7 @@
 
 					<?php if ($session->has("errors")) : ?>
 
-						<div class="alert alert-danger">
+						<div class="alert alert-danger text-center">
 							<?php foreach ($session->get("errors") as $error) : ?>
 								<p class="md-0"><?= $error ?></p>
 							<?php endforeach;

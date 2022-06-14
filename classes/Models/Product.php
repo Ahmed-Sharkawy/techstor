@@ -19,4 +19,10 @@ class Product extends Db
     return  $result->fetch_assoc();
   }
 
+  public function selectAllWithCats(string $fields = "*"): array
+  {
+    $sql    = "SELECT $fields FROM `$this->table` JOIN cats ON $this->table.cats_id = cats.id ORDER BY $this->table.id DESC";
+    $result = $this->coon->query($sql);
+    return $result->fetch_all(1);
+  }
 }

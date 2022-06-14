@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 require_once "../app.php";
 
 use TechStore\Classes\Cart;
@@ -12,7 +12,7 @@ $orderObject = new Order();
 $ordersDetailsObject = new OrdersDetails();
 
 
-if ($request->postHas('submit') && $session->has("cart") == true) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $session->has("cart") == true) {
 
   $name     = $request->post('name');
   $email    = $request->post('email');
@@ -21,18 +21,18 @@ if ($request->postHas('submit') && $session->has("cart") == true) {
 
   $validator = new Validator();
 
-  $validator->validate("name", $name, ["required", "str", "max"]);
-  $validator->validate("phone", $phone, ["required", "str", "max"]);
+  $validator->validate("name", $name, ["Required", "Str", "Max"]);
+  $validator->validate("phone", $phone, ["Required", "Str", "Max"]);
 
   if (!empty($email)) {
-    $validator->validate("email", $email, ["email", "max"]);
+    $validator->validate("email", $email, ["Email", "Max"]);
     $email  =  "'$email'";
   }else {
     $email = "null";
   }
 
   if (!empty($address)) {
-    $validator->validate("address", $address, ["str", "max"]);
+    $validator->validate("address", $address, ["Str", "Max"]);
     $address  =  "'$address'";
   } else {
     $address = "null";
@@ -58,3 +58,5 @@ if ($request->postHas('submit') && $session->has("cart") == true) {
 
   $request->redirect("cart.php");
 }
+
+ob_end_flush();

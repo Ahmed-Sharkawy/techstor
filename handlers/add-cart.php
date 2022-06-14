@@ -1,10 +1,10 @@
 <?php
-
+ob_start();
 use TechStore\Classes\Cart;
 
 require_once "../app.php";
 
-if ($request->postHas('submit')) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $cartObject = new Cart;
 
@@ -29,3 +29,5 @@ if ($request->postHas('submit')) {
 } else {
   $request->redirect("index.php");
 }
+
+ob_end_flush();
